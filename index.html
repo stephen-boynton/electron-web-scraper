@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Web Scraper</h1>
+      <form class="scrape" action="index.html" method="post">
+        <input type="text" autofocus placeholder="URL to Scrape">
+        <button type="submit" name="button">Scrape Page</button>
+      </form>
+    </div>
+    <script type="text/javascript">
+    const electron = require("electron");
+const { ipcRenderer } = electron;
+
+const form = document.querySelector(".scrape");
+form.addEventListener("submit", event => {
+	event.preventDefault();
+	const url = event.target[0].value;
+	ipcRenderer.send("url", url);
+});
+</script>
+  </body>
+</html>
